@@ -1,0 +1,30 @@
+[
+  {
+    "class":"firrtl.transforms.CombinationalPath",
+    "sink":"~BadTypeModule|BadTypeModule>io_out",
+    "sources":[
+      "~BadTypeModule|BadTypeModule>io_in"
+    ]
+  },
+  {
+    "class":"firrtl.transforms.CombinationalPath",
+    "sink":"~BadTypeModule|BadTypeModule>io_bundleOut_a",
+    "sources":[
+      "~BadTypeModule|BadTypeModule>io_bundleIn_a"
+    ]
+  },
+  {
+    "class":"logger.LogLevelAnnotation",
+    "globalLogLevel":{
+      
+    }
+  },
+  {
+    "class":"firrtl.EmitCircuitAnnotation",
+    "emitter":"firrtl.VerilogEmitter"
+  },
+  {
+    "class":"firrtl.transforms.BlackBoxTargetDirAnno",
+    "targetDir":"."
+  }
+]

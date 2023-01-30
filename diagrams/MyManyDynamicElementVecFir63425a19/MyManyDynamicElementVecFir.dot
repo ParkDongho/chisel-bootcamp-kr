@@ -1,0 +1,94 @@
+digraph MyManyDynamicElementVecFir {
+stylesheet = "styles.css"
+rankdir="LR" 
+
+subgraph cluster_MyManyDynamicElementVecFir {
+  label="MyManyDynamicElementVecFir"
+  URL=""
+  bgcolor="#FFF8DC"
+  cluster_MyManyDynamicElementVecFir_clock [shape = "rectangle" style="filled" fillcolor="#CCCCCC" label="clock" rank="0"]
+     
+cluster_MyManyDynamicElementVecFir_reset [shape = "rectangle" style="filled" fillcolor="#CCCCCC" label="reset" rank="0"]
+     
+cluster_MyManyDynamicElementVecFir_io_muxIn [shape = "rectangle" style="filled" fillcolor="#CCCCCC" label="io_muxIn" rank="0"]
+     
+cluster_MyManyDynamicElementVecFir_io_init [shape = "rectangle" style="filled" fillcolor="#CCCCCC" label="io_init" rank="0"]
+     
+cluster_MyManyDynamicElementVecFir_io_muxOut [shape = "rectangle" style="filled" fillcolor="#E0FFFF" label="io_muxOut" rank="1000"]
+     
+struct_cluster_MyManyDynamicElementVecFir_counter [shape="plaintext" label=<
+<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#FFE4B5">
+  <TR>
+    <TD PORT="in">&#x25cf;</TD>
+    <TD>counter</TD>
+    <TD PORT="out">&#x25cf;</TD>
+  </TR>
+</TABLE>>];
+cluster_MyManyDynamicElementVecFir__T [label = "_T" shape="rectangle"]; 
+
+op_add_20 [shape = "plaintext" label=<
+<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#D8BFD8">
+  <TR>
+    <TD PORT="in1">&#x25cf;</TD>
+    <TD ROWSPAN="2" > add </TD>
+    <TD ROWSPAN="2" PORT="out">&#x25cf;</TD>
+  </TR>
+  <TR>
+    <TD PORT="in2">1</TD>
+  </TR>
+</TABLE>>];
+       
+
+mux_176333046 [shape = "plaintext" label=<
+<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#AFEEEE">
+  <TR>
+    <TD PORT="in1">&#x25cf;</TD>
+    <TD ROWSPAN="2" PORT="select">a?</TD>
+    <TD ROWSPAN="2" PORT="out">&#x25cf;</TD>
+  </TR>
+  <TR>
+    <TD PORT="in2">0</TD>
+  </TR>
+</TABLE>>];
+       
+
+mux_784471000 [shape = "plaintext" label=<
+<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#AFEEEE">
+  <TR>
+    <TD PORT="in1">2</TD>
+    <TD ROWSPAN="2" PORT="select">a?</TD>
+    <TD ROWSPAN="2" PORT="out">&#x25cf;</TD>
+  </TR>
+  <TR>
+    <TD PORT="in2">&#x25cf;</TD>
+  </TR>
+</TABLE>>];
+       
+
+op_tail_21 [shape = "plaintext" label=<
+<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#D8BFD8">
+  <TR>
+    <TD PORT="in1">&#x25cf;</TD>
+    <TD ROWSPAN="2" > tail </TD>
+    <TD ROWSPAN="2" PORT="out">&#x25cf;</TD>
+  </TR>
+  <TR>
+    <TD>1</TD>
+  </TR>
+</TABLE>>];
+       
+
+  cluster_MyManyDynamicElementVecFir_io_muxIn -> mux_176333046:select
+  op_tail_21:out -> mux_784471000:in2
+  cluster_MyManyDynamicElementVecFir_io_init -> mux_784471000:select
+  struct_cluster_MyManyDynamicElementVecFir_counter:out -> op_add_20:in1
+  op_add_20:out -> cluster_MyManyDynamicElementVecFir__T
+  cluster_MyManyDynamicElementVecFir__T -> op_tail_21:in1
+  struct_cluster_MyManyDynamicElementVecFir_counter:out -> mux_176333046:in1
+  mux_176333046:out -> cluster_MyManyDynamicElementVecFir_io_muxOut
+  mux_784471000:out -> struct_cluster_MyManyDynamicElementVecFir_counter:in
+  
+  
+}
+     
+}
